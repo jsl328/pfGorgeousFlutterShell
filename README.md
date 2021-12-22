@@ -30,8 +30,8 @@ path:
 # var:
    #ANDROID_TOP: ~/.android
   - FLUTTER_BIN: /Users/mac/Desktop/flutter/bin
-  - MY_PWD: jxl459623
-  - MY_USER: jiangsl
+  - MY_PWD: xxxx
+  - MY_USER: xxxx
   ```
 
 3、修改系统 .zshrc 文件,在文件的最下面添加如下代码:
