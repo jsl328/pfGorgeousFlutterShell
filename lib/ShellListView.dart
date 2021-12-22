@@ -84,7 +84,7 @@ class _ListViewState extends State<ShellListView> {
     var flutterPubCommandPath = "flutter";
     var flutterPubRun =
         await GrepCommand.grepRunShellCommandPath(flutterPubCommandPath);
-    print('flutterPubCommandPath ==$flutterPubCommandPath');
+    // print('flutterPubCommandPath ==$flutterPubCommandPath');
     if (flutterPubRun!.grepRes.isNotEmpty) {
       Future<List<ProcessResult>> _flutterPubShellRes =
           ShellScriptStatic.startShellCommand(

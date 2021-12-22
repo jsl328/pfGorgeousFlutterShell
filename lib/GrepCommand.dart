@@ -18,7 +18,7 @@ class GrepCommand {
       grepEntityInstance.grepRes = "本机whic路径未找到";
     } else {
       newWhich.then((value) => {
-            print("object----$value"),
+            // print("object----$value"),
             grepEntityInstance.status = 200,
             grepEntityInstance.grepRes = value.toString()
           });
