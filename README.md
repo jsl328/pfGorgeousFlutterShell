@@ -16,7 +16,31 @@ For help getting started with Flutter, view our
 samples, guidance on mobile development, and a full API reference.
 
 ## Usage 
-                  
+
+首先修改两个地方:
+
+1、系统此目录下/Users/xxxx/.config/tekartik/process_run建env.yaml文件，如果存在就不创建只需要修改配置就行。
+
+2、env.yaml配置如下:
+```
+path:
+  - ./local
+  - bin/
+  - /Users/mac/Desktop/flutter/bin
+# var:
+   #ANDROID_TOP: ~/.android
+  - FLUTTER_BIN: /Users/mac/Desktop/flutter/bin
+  - MY_PWD: jxl459623
+  - MY_USER: jiangsl
+  ```
+
+3、修改系统 .zshrc 文件,在文件的最下面添加如下代码:
+```
+export PATH=/Users/mac/Desktop/flutter/bin:$PATH
+export PUB_HOSTED_URL=https://pub.flutter-io.cn
+export FLUTTER_STORAGE_BASE_URL=https://storage.flutter-io.cn
+```
+
 which dart, flutter ,ls ,java.
 in my local env ,which dart = /usr/local/flutter/bin/dart,
 which flutter = /usr/local/flutter/bin/flutter,
