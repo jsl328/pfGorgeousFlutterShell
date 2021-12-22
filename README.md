@@ -17,8 +17,8 @@ samples, guidance on mobile development, and a full API reference.
 
 ## Usage 
                   
-which dart, flutter ,ls ,java;
-in my local env ,which dart = /usr/local/flutter/bin/dart;
+which dart, flutter ,ls ,java.
+in my local env ,which dart = /usr/local/flutter/bin/dart,
 which flutter = /usr/local/flutter/bin/flutter,
 which ls = /bin/ls
 which java = /usr/bin/java
@@ -29,7 +29,7 @@ Dart SDK version: 2.16.0-85.0.dev (dev) (Mon Dec 6 21:50:02 2021 -0800) on "maco
 execute `shell.run('/usr/local/flutter/bin/flutter')`
 in addtional , show flutter help commmits
     
-execute `shell.run('ls')`
+execute `shell.run('ls')` 
 list current login user`s  workspaces
 
 execute `shell.run('/usr/bin/java -version')`
