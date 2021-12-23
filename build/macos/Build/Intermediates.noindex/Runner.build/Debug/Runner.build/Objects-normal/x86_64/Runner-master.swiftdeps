@@ -1,0 +1,12 @@
+version: "Apple Swift version 5.5.1 (swiftlang-1300.0.31.4 clang-1300.0.29.6)"
+options: "9a1a92567da5ba281853eeb8aa848932366c22d4c906cd6a3183548b7eafb970"
+build_start_time: [1640259074, 30480861]
+build_end_time: [1640259074, 707836151]
+inputs:
+  "/Users/mac/Desktop/pfmacostsApp/pfGorgeousFlutterShell/macos/Flutter/GeneratedPluginRegistrant.swift": [1640259062, 613737821]
+  "/Users/mac/Desktop/pfmacostsApp/pfGorgeousFlutterShell/macos/Runner/AppDelegate.swift": [1640256968, 744457721]
+  "/Users/mac/Desktop/pfmacostsApp/pfGorgeousFlutterShell/macos/Runner/FlutterNativePlugin.swift": [1639481914, 624171972]
+  "/Users/mac/Desktop/pfmacostsApp/pfGorgeousFlutterShell/macos/Runner/MainFlutterWindow.swift": [1640259035, 948257684]
+  "/Users/mac/Desktop/pfmacostsApp/pfGorgeousFlutterShell/macos/Runner/Plugins/ProcessrunFlutterShell.swift": [1640253491, 26469707]
+  "/Users/mac/Desktop/pfmacostsApp/pfGorgeousFlutterShell/macos/Runner/Plugins/WhichFlutterShell.swift": [1640258910, 533307075]
+  "/Users/mac/Desktop/pfmacostsApp/pfGorgeousFlutterShell/macos/Runner/UnifiedRgistration.swift": [1640259022, 174202919]

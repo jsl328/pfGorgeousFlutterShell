@@ -21,6 +21,10 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		0480107F2774767B004023E9 /* WhichFlutterShell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0480107E2774767B004023E9 /* WhichFlutterShell.swift */; };
+		04801081277476CA004023E9 /* ProcessrunFlutterShell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04801080277476CA004023E9 /* ProcessrunFlutterShell.swift */; };
+		04801083277489D2004023E9 /* UnifiedRgistration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04801082277489D2004023E9 /* UnifiedRgistration.swift */; };
+		048010872774B106004023E9 /* FileIO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048010862774B106004023E9 /* FileIO.swift */; };
 		04EF53D02768B8ED004B3E05 /* FlutterNativePlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EF53CF2768B8ED004B3E05 /* FlutterNativePlugin.swift */; };
 		335BBD1B22A9A15E00E9071D /* GeneratedPluginRegistrant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 335BBD1A22A9A15E00E9071D /* GeneratedPluginRegistrant.swift */; };
 		33CC10F12044A3C60003C045 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33CC10F02044A3C60003C045 /* AppDelegate.swift */; };
@@ -53,6 +57,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0480107E2774767B004023E9 /* WhichFlutterShell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhichFlutterShell.swift; sourceTree = "<group>"; };
+		04801080277476CA004023E9 /* ProcessrunFlutterShell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessrunFlutterShell.swift; sourceTree = "<group>"; };
+		04801082277489D2004023E9 /* UnifiedRgistration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnifiedRgistration.swift; sourceTree = "<group>"; };
+		048010862774B106004023E9 /* FileIO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileIO.swift; sourceTree = "<group>"; };
 		04EF53CF2768B8ED004B3E05 /* FlutterNativePlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlutterNativePlugin.swift; sourceTree = "<group>"; };
 		333000ED22D3DE5D00554162 /* Warnings.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Warnings.xcconfig; sourceTree = "<group>"; };
 		335BBD1A22A9A15E00E9071D /* GeneratedPluginRegistrant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneratedPluginRegistrant.swift; sourceTree = "<group>"; };
@@ -83,6 +91,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0480107D27747649004023E9 /* Plugins */ = {
+			isa = PBXGroup;
+			children = (
+				0480107E2774767B004023E9 /* WhichFlutterShell.swift */,
+				04801080277476CA004023E9 /* ProcessrunFlutterShell.swift */,
+			);
+			path = Plugins;
+			sourceTree = "<group>";
+		};
+		048010852774B0F2004023E9 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				048010862774B106004023E9 /* FileIO.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
 		33BA886A226E78AF003329D5 /* Configs */ = {
 			isa = PBXGroup;
 			children = (
@@ -137,6 +162,8 @@
 		33FAB671232836740065AC1E /* Runner */ = {
 			isa = PBXGroup;
 			children = (
+				048010852774B0F2004023E9 /* Utils */,
+				0480107D27747649004023E9 /* Plugins */,
 				33CC10F02044A3C60003C045 /* AppDelegate.swift */,
 				33CC11122044BFA00003C045 /* MainFlutterWindow.swift */,
 				33E51913231747F40026EE4D /* DebugProfile.entitlements */,
@@ -144,6 +171,7 @@
 				33CC11242044D66E0003C045 /* Resources */,
 				33BA886A226E78AF003329D5 /* Configs */,
 				04EF53CF2768B8ED004B3E05 /* FlutterNativePlugin.swift */,
+				04801082277489D2004023E9 /* UnifiedRgistration.swift */,
 			);
 			path = Runner;
 			sourceTree = "<group>";
@@ -281,8 +309,12 @@
 			files = (
 				04EF53D02768B8ED004B3E05 /* FlutterNativePlugin.swift in Sources */,
 				33CC11132044BFA00003C045 /* MainFlutterWindow.swift in Sources */,
+				04801083277489D2004023E9 /* UnifiedRgistration.swift in Sources */,
+				0480107F2774767B004023E9 /* WhichFlutterShell.swift in Sources */,
+				04801081277476CA004023E9 /* ProcessrunFlutterShell.swift in Sources */,
 				33CC10F12044A3C60003C045 /* AppDelegate.swift in Sources */,
 				335BBD1B22A9A15E00E9071D /* GeneratedPluginRegistrant.swift in Sources */,
+				048010872774B106004023E9 /* FileIO.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

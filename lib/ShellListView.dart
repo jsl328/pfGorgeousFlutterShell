@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'GrepCommand.dart';
 import 'ProcessResultEntity.dart';
 import 'ShellScript.dart';
+import 'whichFlutterPlugin.dart';
 
 class ShellListView extends StatefulWidget {
   @override
@@ -119,6 +120,11 @@ class _ListViewState extends State<ShellListView> {
     print('initState');
     // TODO: implement initState
     super.initState();
+    // var macosSystemInfo = WhichFlutterPlugin();
+    WhichFlutterPlugin.lsShell.then((value) => {
+          // var ls = ,
+          print('value:$value')
+        });
   }
 
   void _incrementShellTask() async {
