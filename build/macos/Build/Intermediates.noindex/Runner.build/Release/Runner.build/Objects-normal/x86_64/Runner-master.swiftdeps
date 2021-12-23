@@ -1,9 +1,0 @@
-version: "Apple Swift version 5.5.1 (swiftlang-1300.0.31.4 clang-1300.0.29.6)"
-options: "a4a403bdde4144706e008de51b2a7e16294521111299e750d5f9535b87782b48"
-build_start_time: [1640165336, 535737037]
-build_end_time: [1640165344, 684592008]
-inputs:
-  "/Users/mac/Desktop/pfmacostsApp/pfGorgeousFlutterShell/macos/Flutter/GeneratedPluginRegistrant.swift": [1640165294, 227354288]
-  "/Users/mac/Desktop/pfmacostsApp/pfGorgeousFlutterShell/macos/Runner/AppDelegate.swift": [1639403948, 0]
-  "/Users/mac/Desktop/pfmacostsApp/pfGorgeousFlutterShell/macos/Runner/FlutterNativePlugin.swift": [1639481914, 624171972]
-  "/Users/mac/Desktop/pfmacostsApp/pfGorgeousFlutterShell/macos/Runner/MainFlutterWindow.swift": [1639403948, 0]
