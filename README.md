@@ -1,6 +1,6 @@
 # pfGorgeousFlutterShell
 
-A new Flutter project.
+A new Flutter project about FlutterShell.
 
 ## Getting Started
 
@@ -50,7 +50,7 @@ export FLUTTER_STORAGE_BASE_URL=https://storage.flutter-io.cn
 source .zshrc
 
 ```
-## 使用实例
+## Use case
 
 On my machine ,can run normally ` which ` command lines:
  - which dart, 
@@ -80,8 +80,8 @@ The results of their respective operations are as follows:
 - java version "1.8.0_271"
 Java(TM) SE Runtime Environment (build 1.8.0_271-b09)    Java HotSpot(TM) 64-Bit Server VM (build 25.271-b09, mixed mode)
 
-## 感谢
+## grateful
 
--[process_run open source ](https://github.com/tekartik/process_run.dart.git)
+[process_run open source ](https://github.com/tekartik/process_run.dart.git)
 
 Thank you very much open source blogger!
