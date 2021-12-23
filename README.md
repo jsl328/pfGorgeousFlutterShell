@@ -26,10 +26,10 @@ samples, guidance on mobile development, and a full API reference.
 path:
   - ./local
   - bin/
-  - /Users/mac/Desktop/flutter/bin
+  - /Users/xxxx/Desktop/flutter/bin
 # var:
    #ANDROID_TOP: ~/.android
-  - FLUTTER_BIN: /Users/mac/Desktop/flutter/bin 
+  - FLUTTER_BIN: /Users/xxxx/Desktop/flutter/bin 
   - MY_PWD: xxxx  
   - MY_USER: xxxx
   ```
@@ -41,7 +41,7 @@ pub global active process_run $ alias ds='pub global run process_run:shell'
 ```
 4、修改系统 .zshrc 文件,在文件的最下面添加如下代码:
 ```
-export PATH=/Users/mac/Desktop/flutter/bin:$PATH 指定自己的flutter路径
+export PATH=/Users/xxxx/Desktop/flutter/bin:$PATH 指定自己的flutter路径
 export PUB_HOSTED_URL=https://pub.flutter-io.cn
 export FLUTTER_STORAGE_BASE_URL=https://storage.flutter-io.cn
 ```
@@ -52,19 +52,36 @@ source .zshrc
 ```
 ## 使用实例
 
-`which dart, flutter ,ls ,java`.
-in my local env ,`which dart = /usr/local/flutter/bin/dart`;`which flutter = /usr/local/flutter/bin/flutter`;`which ls = /bin/ls`;`which java = /usr/bin/java`
+On my machine ,can run normally ` which ` command lines:
+ - which dart, 
+ - which flutter 
+ - which ls 
+ - which java
 
-execute `shell.run('/usr/local/flutter/bin/dart  --version')`
-Dart SDK version: 2.16.0-85.0.dev (dev) (Mon Dec 6 21:50:02 2021 -0800) on "macos_x64"
-    
-execute `shell.run('/usr/local/flutter/bin/flutter')`
-in addtional , show flutter help commmits
-    
-execute `shell.run('ls')` 
-list current login user`s  workspaces
+The results of their respective operations are as follows:
 
-execute `shell.run('/usr/bin/java -version')`
-stdout java version "1.8.0_271"
+- /Users/xxxx/Desktop/flutter/bin/dart
+- /Users/xxxx/Desktop/flutter/bin/flutter
+- /bin/ls
+- /usr/bin/java
+
+Then can run normally ` shell.run() ` command lines:
+
+- shell.run('/Users/xxxx/Desktop/flutter/bin/dart  --version')
+- shell.run('/Users/xxxx/Desktop/flutter/bin/flutter  build')
+- shell.run('/bin/ls')
+- shell.run('/usr/bin/java -version')
+
+The results of their respective operations are as follows:
+
+- Dart SDK version: 2.16.0-85.0.dev (dev) (Mon Dec 6 21:50:02 2021 -0800) on "macos_x64"
+- flutter help information
+- list current login user`s  workspaces
+- java version "1.8.0_271"
 Java(TM) SE Runtime Environment (build 1.8.0_271-b09)    Java HotSpot(TM) 64-Bit Server VM (build 25.271-b09, mixed mode)
-but `/usr/bin/java -version` have more bugs 
+
+## 感谢
+
+-[process_run open source ](https://github.com/tekartik/process_run.dart.git)
+
+Thank you very much open source blogger!
