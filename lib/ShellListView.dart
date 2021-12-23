@@ -1,3 +1,7 @@
+// classs: ShellListView
+// description: 使用一个Listview来展示shell命令的结果集
+// author : jiangsl
+// date: 23/12 2021
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -14,6 +18,9 @@ class ShellListView extends StatefulWidget {
 
 class _ListViewState extends State<ShellListView> {
   List<ProcessResultEntity> _items = [];
+  /*
+    使用ProcessResult构建ProcessResultEntity实体
+  */
   ProcessResultEntity generateProcessResultEntity(ProcessResult result) {
     var processRes = ProcessResultEntity();
     processRes.pid = result.pid;
@@ -24,7 +31,11 @@ class _ListViewState extends State<ShellListView> {
     return processRes;
   }
 
+  /*
+    初始化listview的数据集
+  */
   void _listViewResponse() async {
+    /* dart  --version 实现*/
     var commandPath = "dart";
     var dartRun = await GrepCommand.grepRunShellCommandPath(commandPath);
     Future<List<ProcessResult>> _shellRes =
@@ -38,6 +49,7 @@ class _ListViewState extends State<ShellListView> {
         _items.addAll(pentity);
       });
     });
+    /* flutter  --build 实现*/
     var fluttercommandPath = "flutter";
     var flutterRun =
         await GrepCommand.grepRunShellCommandPath(fluttercommandPath);
@@ -52,7 +64,7 @@ class _ListViewState extends State<ShellListView> {
         _items.addAll(flutterEntity);
       });
     });
-
+    /* ls  实现*/
     var lsCommandPath = "ls";
     var lsRun = await GrepCommand.grepRunShellCommandPath(lsCommandPath);
     Future<List<ProcessResult>> _lsShellRes =
@@ -65,7 +77,7 @@ class _ListViewState extends State<ShellListView> {
         _items.addAll(lsEntity);
       });
     });
-
+    /* java -version  实现*/
     var javaSDKCommandPath = "java";
     var javaSDKRun =
         await GrepCommand.grepRunShellCommandPath(javaSDKCommandPath);
@@ -80,11 +92,10 @@ class _ListViewState extends State<ShellListView> {
         _items.addAll(javaSDKEntity);
       });
     });
-
+    /* flutter pub --version  实现*/
     var flutterPubCommandPath = "flutter";
     var flutterPubRun =
         await GrepCommand.grepRunShellCommandPath(flutterPubCommandPath);
-    // print('flutterPubCommandPath ==$flutterPubCommandPath');
     if (flutterPubRun!.grepRes.isNotEmpty) {
       Future<List<ProcessResult>> _flutterPubShellRes =
           ShellScriptStatic.startShellCommand(
@@ -111,7 +122,7 @@ class _ListViewState extends State<ShellListView> {
   }
 
   void _incrementShellTask() async {
-    _items = [];
+    _items = []; //清空listview数据集
     _listViewResponse();
   }
 
@@ -121,11 +132,12 @@ class _ListViewState extends State<ShellListView> {
       isThreeLine: true, //子item的是否为三行
       dense: false,
       leading: CircleAvatar(
-        child: Text(item.pid.toString()),
+        child: Text(item.pid.toString()), //header显示shell.run的线程pid
       ), //左侧首字母图标显示，不显示则传null
-      title: Text(item.exitCode.toString()), //子item的标题
-      subtitle:
-          Text(item.stdout.isNotEmpty ? item.stdout : item.stderr), //子item的内容
+      title: Text(item.exitCode.toString()), //大标题显示shell.run的exitCode码，0是成功返回
+      subtitle: Text(item.stdout.isNotEmpty
+          ? item.stdout
+          : item.stderr), //小标题的内容显示shell.run的返回信息
       // trailing: const Icon(
       //   Icons.arrow_right,
       //   color: Colors.green,

@@ -1,9 +1,22 @@
+/*
+
+  classs: ShellScriptStatic
+  description: 各类shell.run()的静态方法
+  author : jiangsl
+  date: 22/12 2021
+
+*/
 import 'dart:io';
 import 'package:process_run/cmd_run.dart';
 import 'package:process_run/shell.dart';
 import 'dart:core';
 
 class ShellScriptStatic {
+  /*
+    startPath:shell.run()的第一个参数
+    description:shell.run()调用方法
+    return :Future<List<ProcessResult>>? 类型
+  */
   static Future<List<ProcessResult>>? startShellCommand(String startPath) {
     late Future<List<ProcessResult>> result;
     if (startPath.isEmpty) {
@@ -16,6 +29,13 @@ class ShellScriptStatic {
     return result;
   }
 
+  /*
+  
+    startPath:shell.run()的第一个参数
+    description:shell.run()调用方法,unuse,移步startShellCommand()
+    return :Future<List<ProcessResult>>? 类型
+
+  */
   static Future<List<ProcessResult>>? dartVersionShellCommand(String path) {
     late Future<List<ProcessResult>> result;
     if (path.isEmpty) {

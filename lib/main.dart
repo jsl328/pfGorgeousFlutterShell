@@ -62,7 +62,7 @@ class _MyHomePageState extends State<MyHomePage> {
       //     ],
       //   ),
       // ),
-      body: ShellListView(),
+      body: ShellListView(), //ListView组件
       // floatingActionButton: FloatingActionButton(
       //   onPressed: _incrementCounter,
       //   tooltip: '测试',

@@ -1,19 +1,29 @@
+// classs: GrepCommand
+// description: which()调用的静态方法
+// author : jiangsl
+// date: 22/12 2021
+
 import 'GrepEntity.dart';
 import 'package:process_run/shell.dart';
 
 class GrepCommand {
+  /*
+  commandPath:需要查找的shell命令所在路径,比如'ls'= /bin/ls
+  action: grepRunShellCommandPath
+  description: which()调用的静态方法
+  */
   static Future<GrepEntity?> grepRunShellCommandPath(String commandPath) async {
     var grepEntityInstance = GrepEntity();
     if (commandPath.isEmpty) {
-      print("value为空");
+      //print("value为空");
       grepEntityInstance.status = 404;
       grepEntityInstance.grepName = commandPath;
       grepEntityInstance.grepRes = "commandScript 为空";
     }
-    var newWhich = which(commandPath);
+    var newWhich = which(commandPath); //异步方法
     grepEntityInstance.grepName = commandPath;
     if (newWhich == null) {
-      print("本机whic路径未找到");
+      //print("本机whic路径未找到");
       grepEntityInstance.status = 401;
       grepEntityInstance.grepRes = "本机whic路径未找到";
     } else {
@@ -30,7 +40,7 @@ class GrepCommand {
     if (commandPath.isEmpty) {
       return 'commandPath 为空';
     } else {
-      return whichSync(commandPath);
+      return whichSync(commandPath); //同步返回
     }
   }
 }
