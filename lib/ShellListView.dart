@@ -5,6 +5,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:pf/Appsandox.dart';
 import 'GrepCommand.dart';
 import 'ProcessResultEntity.dart';
 import 'ShellScript.dart';
@@ -19,6 +20,7 @@ class ShellListView extends StatefulWidget {
 
 class _ListViewState extends State<ShellListView> {
   List<ProcessResultEntity> _items = [];
+  String appsandox = "";
   /*
     使用ProcessResult构建ProcessResultEntity实体
   */
@@ -69,13 +71,26 @@ class _ListViewState extends State<ShellListView> {
     var lsCommandPath = "ls";
     var lsRun = await GrepCommand.grepRunShellCommandPath(lsCommandPath);
     Future<List<ProcessResult>> _lsShellRes =
-        ShellScriptStatic.startShellCommand(lsRun!.grepRes.toString())!;
+        ShellScriptStatic.startShellCommand('${lsRun!.grepRes} -la')!;
     _lsShellRes.then((out) {
       Iterable<ProcessResultEntity> lsEntity = out.map((ProcessResult item) {
         return generateProcessResultEntity(item);
       });
       setState(() {
         _items.addAll(lsEntity);
+      });
+    });
+    /* pwd  实现*/
+    var pwdCommandPath = "pwd";
+    var pwdRun = await GrepCommand.grepRunShellCommandPath(pwdCommandPath);
+    Future<List<ProcessResult>> _pwdShellRes =
+        ShellScriptStatic.startShellCommand(pwdRun!.grepRes)!;
+    _pwdShellRes.then((out) {
+      Iterable<ProcessResultEntity> pwdEntity = out.map((ProcessResult item) {
+        return generateProcessResultEntity(item);
+      });
+      setState(() {
+        _items.addAll(pwdEntity);
       });
     });
     /* java -version  实现*/
@@ -115,21 +130,33 @@ class _ListViewState extends State<ShellListView> {
     }
   }
 
+  void getAppsandox() async {
+    Appsandox.appsandoxAddress.then((value) {
+      print('object------$value');
+      setState(() {
+        appsandox = value;
+      });
+    });
+    // setState(() {});
+  }
+
   @override
   void initState() {
     print('initState');
     // TODO: implement initState
     super.initState();
     // var macosSystemInfo = WhichFlutterPlugin();
-    WhichFlutterPlugin.lsShell.then((value) => {
+    WhichFlutterPlugin.whichls.then((value) => {
           // var ls = ,
-          print('value:$value')
+          print('1111111:$value')
         });
+    WhichFlutterPlugin.whichflutter.then((value) => {print('222222:$value')});
   }
 
   void _incrementShellTask() async {
     _items = []; //清空listview数据集
     _listViewResponse();
+    getAppsandox();
   }
 
   //buildListTile相当于ListView的Adapter
@@ -162,7 +189,7 @@ class _ListViewState extends State<ShellListView> {
         context: context, tiles: listTitles); //给Listview设置分隔线
     return Scaffold(
       appBar: AppBar(
-        title: const Text("ListView"),
+        title: Text(appsandox),
       ),
       body: Scrollbar(
           child: ListView(

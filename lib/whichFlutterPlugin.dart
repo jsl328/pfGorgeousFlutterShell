@@ -4,8 +4,7 @@ import 'package:flutter/services.dart';
 
 class WhichFlutterPlugin {
   //通过字符串which_flutter_plugin找到约定的MethodChannel
-  static const MethodChannel _channel =
-      const MethodChannel('which_flutter_plugin');
+  static const MethodChannel _channel = MethodChannel('which_flutter_plugin');
 
   /*
    *传参方式调用原生，默认工程无此方法 
@@ -26,10 +25,17 @@ class WhichFlutterPlugin {
     return version;
   }
 
-  static Future<String> get lsShell async {
+  static Future<String> get whichls async {
     //需要使用async、await标记异步调用
     //lsShell为自定义原生方法名称
-    final String lsout = await _channel.invokeMethod('lsShell');
+    final String lsout = await _channel.invokeMethod('whichls');
     return lsout;
+  }
+
+  static Future<String> get whichflutter async {
+    //需要使用async、await标记异步调用
+    //lsShell为自定义原生方法名称
+    final String whichFlutterOut = await _channel.invokeMethod('whichflutter');
+    return whichFlutterOut;
   }
 }

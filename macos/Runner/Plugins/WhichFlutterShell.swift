@@ -35,17 +35,47 @@ public class WhichFlutterShell: NSObject,FlutterMacOS.FlutterPlugin {
            result(msg)
            //返回null
            //result(nil)
-      }else if("lsShell"==call.method){
+      }else if("whichls"==call.method){
           //传参方式调用原生，默认工程无此方法，通过Dictionary传参数
           //返回null
 //          result(lsShell(commandPath: "/bin/ls",commandScript: ""));
-          
-          result(lsShell(commandPath: "/usr/bin/java",commandScript: "-version"));
-     }else{
+          result(lsShell(commandPath: "ls",commandScript: "-la"));//
+     }else if("whichflutter"==call.method){
+         //传参方式调用原生，默认工程无此方法，通过Dictionary传参数
+         //返回null
+//          result(lsShell(commandPath: "/bin/ls",commandScript: ""));
+         result(grepWhichCommand(commandPath:"flutter"));
+    }else if("appsandox_home"==call.method){
+         //传参方式调用原生，默认工程无此方法，通过Dictionary传参数
+         //返回null
+         result(lsShell(commandPath: "",commandScript: "la"));
+    }else{//appsandoxAddress
          //没有找到method
          result(FlutterMethodNotImplemented)
       }
    }
+    func grepWhichCommand(commandPath:String) ->String{
+        let taskQueue = DispatchQueue.global(qos: DispatchQoS.QoSClass.background);
+        var grepWhichResult: String = ""
+        taskQueue.async {
+            let buildTask = Process()
+            buildTask.launchPath = "/usr/bin/which"
+            // 传入参数
+            buildTask.arguments = [commandPath];
+            // 任务完成回调
+            buildTask.terminationHandler = { task in
+                DispatchQueue.main.async(execute: {
+                    print("任务结束");
+                    grepWhichResult = task.standardOutput!;
+                });
+            }
+            // 开始执行任务
+            buildTask.launch()
+            // 等任务结束释放内存
+            buildTask.waitUntilExit()
+        }
+        return grepWhichResult;
+    }
     
     func lsShell(commandPath :String , commandScript:String) ->String{
         let taskQueue = DispatchQueue.global(qos: DispatchQoS.QoSClass.background);
@@ -57,7 +87,6 @@ public class WhichFlutterShell: NSObject,FlutterMacOS.FlutterPlugin {
 //                print("Unable to locate script.command")
 //                return
 //            }
-            
             // 初始化任务
             let buildTask = Process()
             buildTask.launchPath = commandPath
@@ -78,19 +107,19 @@ public class WhichFlutterShell: NSObject,FlutterMacOS.FlutterPlugin {
 //                    let sss:String=String.init(format:"ddd%tu",task.standardOutput!)
 //                    return task.standardOutput;
 //                    res = task.standardOutput! as! String
-                    let writer = FlutterStandardReaderWriter();
-                    let codec = FlutterStandardMessageCodec(readerWriter: writer);
-                    let codeData = codec.encode(task.standardOutput!);
+//                    let writer = FlutterStandardReaderWriter();
+//                    let codec = FlutterStandardMessageCodec(readerWriter: writer);
+//                    let codeData = codec.encode(task.standardOutput!);
                     // create codec
 //                    FlutterStandardMessageCodec *codec = [FlutterStandardMessageCodec codecWithReaderWriter:[[FlutterStandardReaderWriter alloc] init]];
 //                            // encode to binary
 //                            NSData *binary = [codec encode:dict];
 //                            // decode from binary
 //                    let codec = FlutterMethodCodec.sharedInstance();
-                    let dict = codec.decode(codeData);
+//                    let dict = codec.decode(codeData);
 //                            dict = codec decode:task.standardOutput];
 //                            // print
-                    print(dict);
+//                    print(dict);
 //                            NSLog(@"Decoded value: %@", dict);
 //                    codec
 //
