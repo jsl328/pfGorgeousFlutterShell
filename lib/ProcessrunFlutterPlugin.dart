@@ -24,4 +24,12 @@ class ProcessrunFlutterPlugin {
     final String version = await _channel.invokeMethod('getPlatformVersion');
     return version;
   }
+
+  static Future<String> flutterBinBuild(flutterPath) async {
+    //需要使用async、await标记异步调用
+    //flutterBinBuild
+    final String version = await _channel.invokeMethod(
+        'flutterBinBuild', <String, dynamic>{'message': flutterPath});
+    return version;
+  }
 }

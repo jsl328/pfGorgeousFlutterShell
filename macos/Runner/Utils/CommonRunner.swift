@@ -25,12 +25,6 @@ class  CommandRunner: NSObject {
                 print("Unable to locate EnvScript.command")
             return (0,"");
         }
-//
-//        let res =  WhichFlutterShell().envCommand(commandPath: path);
-//        print(res);
-//        print(res.1);
-//        return(10,"");
-        
         let utf8Command = "export LANG=en_US.UTF-8\n" + command
         return sync(shellPath: path, arguments: ["-c", utf8Command])
     }

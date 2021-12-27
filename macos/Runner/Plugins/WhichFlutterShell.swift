@@ -41,52 +41,50 @@ public class WhichFlutterShell: NSObject,FlutterMacOS.FlutterPlugin {
 //          result(lsShell(commandPath: "/bin/ls",commandScript: ""));
           result(lsShell(commandPath: "ls",commandScript: "-la"));//
      }else if("whichflutter"==call.method){
-         //传参方式调用原生，默认工程无此方法，通过Dictionary传参数
-         //返回null
-//          result(lsShell(commandPath: "/bin/ls",commandScript: ""));
-         result(grepWhichCommand(path: "Users/mac/Desktop/flutter/bin/flutter" , commandPath:"flutter"));
+         // 获取脚本地址
+         guard let command = Bundle.main.path(forResource: "WhichScript", ofType: "sh") else {
+                 print("Unable to locate EnvScript.command")
+             return ;
+         }
+//         let utf8Command = "export LANG=en_US.UTF-8\n";
+         let res = grepFlutterSync(shellPath: command, arguments: ["-c"]);
+         result (res.1);
     }else if("appsandox_home"==call.method){
          //传参方式调用原生，默认工程无此方法，通过Dictionary传参数
          //返回null
-         result(lsShell(commandPath: "",commandScript: "la"));
+         //result(lsShell(commandPath: "",commandScript: "la"));
     }else{//appsandoxAddress
          //没有找到method
          result(FlutterMethodNotImplemented)
       }
    }
-    func envCommand(commandPath:String) ->String{
-        let taskQueue = DispatchQueue.global(qos: DispatchQoS.QoSClass.background);
-        var grepWhichResult: String = ""
-        taskQueue.async {
-            let buildTask = Process()
-            let pipe = Pipe();
-            /*
-             shell("/bin/bash", arguments: ["-c", "'/Applications/Xamarin Studio.app/Contents/MacOS/mdtool' -v build '--configuration:Beta|iPhone' MyApp.iOS.sln"])
-             */
-            buildTask.launchPath = commandPath;
-            // 传入参数
-            buildTask.arguments = ["-c"];
-            // 任务完成回调
-//            buildTask.terminationHandler = { task in
-//                DispatchQueue.main.async(execute: {
-//                    print("任务结束");
-////                    grepWhichResult = task.standardOutput!;
-//                });
-//            }
-            buildTask.standardOutput = pipe
-            // 开始执行任务
-            buildTask.launch()
-            
-            let data = pipe.fileHandleForReading.readDataToEndOfFile()
-            let output: String = String(data: data, encoding: String.Encoding.utf8)!
-            // 等任务结束释放内存
-            buildTask.waitUntilExit()
-            pipe.fileHandleForReading.closeFile()
-            //return (Int(task.terminationStatus), output)
-            grepWhichResult = output;
+    func grepFlutterSync(shellPath: String, arguments: [String]? = nil) -> (Int, String) {
+        let task = Process()
+        let pipe = Pipe()
+        
+        var environment = ProcessInfo.processInfo.environment
+        environment["PATH"] = "/opt/anaconda3/bin:/opt/anaconda3/condabin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/Apple/usr/bin:/Library/Java/JavaVirtualMachines/jdk1.8.0_271.jdk/Contents/Home/bin:.:/Users/mac/Desktop/flutter/bin:/Users/mac/.gradle/wrapper/dists/gradle-5.1.1-all/bin:/usr/local/apache-tomcat-8.5.27/bin:/Library/Java/JavaVirtualMachines/jdk1.8.0_271.jdk/Contents/Home/bin:/Users/mac/Library/Android/sdk/tools:/Users/mac/Library/Android/sdk/platform-tools:/Users/mac/Library/Android/sdk/ndk/21.0.6113669:/Users/mac/Library/Android/sdk/ndk/21.0.6113669/ndk-build:/Users/mac/Desktop/apache-maven-3.5.3/bin"
+        
+//        environment["PATH"] = WhichFlutterShell().envCommand(commandPath: "echo $PATH");
+        task.environment = environment
+        
+        if arguments != nil {
+            task.arguments = arguments!
         }
-         return grepWhichResult;
+        
+        task.launchPath = shellPath
+        task.standardOutput = pipe
+        task.launch()
+        
+        let data = pipe.fileHandleForReading.readDataToEndOfFile()
+        let output: String = String(data: data, encoding: String.Encoding.utf8)!
+        
+        task.waitUntilExit()
+        pipe.fileHandleForReading.closeFile()
+        
+        return (Int(task.terminationStatus), output)
     }
+    
     func grepWhichCommand(path: String, commandPath:String) ->String{
         let task = Process()
         let pipe = Pipe()
