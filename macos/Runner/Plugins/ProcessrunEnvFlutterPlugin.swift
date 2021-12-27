@@ -26,7 +26,17 @@ public class ProcessrunEnvFlutterPlugin: NSObject,FlutterMacOS.FlutterPlugin {
     if("initEnvYaml"==call.method){
          //传参方式调用原生，默认工程无此方法，通过Dictionary传参数
          //返回null
-        result("");
+        // 获取脚本地址
+//        let res =  CommandRunner.sync(command: path);
+//        guard let path = Bundle.main.path(forResource: "EnvScript", ofType: "sh") else {
+//                print("Unable to locate Script.command")
+//                return
+//        }
+        let res =  CommandRunner.sync(command: "");
+        //获取元组中分量的值
+        print(res.0);
+        print(res.1);
+        result(res.1);
 //         result(initEnvYaml());
     }else{//appsandoxAddress
          //没有找到method

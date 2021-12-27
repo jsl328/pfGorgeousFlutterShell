@@ -28,6 +28,9 @@
 		04801089277557BF004023E9 /* AppsandoxFlutterPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04801088277557BF004023E9 /* AppsandoxFlutterPlugin.swift */; };
 		0480108B27756514004023E9 /* Script.sh in Resources */ = {isa = PBXBuildFile; fileRef = 0480108A27756514004023E9 /* Script.sh */; };
 		0488DC23277959E400345F10 /* ProcessrunEnvFlutterPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0488DC22277959E400345F10 /* ProcessrunEnvFlutterPlugin.swift */; };
+		0488DC442779BF3C00345F10 /* CommonRunner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0488DC432779BF3C00345F10 /* CommonRunner.swift */; };
+		0488DC462779C2A600345F10 /* WhichScript.sh in Resources */ = {isa = PBXBuildFile; fileRef = 0488DC452779C2A600345F10 /* WhichScript.sh */; };
+		0488DC482779C74300345F10 /* EnvScript.sh in Resources */ = {isa = PBXBuildFile; fileRef = 0488DC472779C74300345F10 /* EnvScript.sh */; };
 		04EF53D02768B8ED004B3E05 /* FlutterNativePlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EF53CF2768B8ED004B3E05 /* FlutterNativePlugin.swift */; };
 		335BBD1B22A9A15E00E9071D /* GeneratedPluginRegistrant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 335BBD1A22A9A15E00E9071D /* GeneratedPluginRegistrant.swift */; };
 		33CC10F12044A3C60003C045 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33CC10F02044A3C60003C045 /* AppDelegate.swift */; };
@@ -67,6 +70,9 @@
 		04801088277557BF004023E9 /* AppsandoxFlutterPlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppsandoxFlutterPlugin.swift; sourceTree = "<group>"; };
 		0480108A27756514004023E9 /* Script.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = Script.sh; sourceTree = "<group>"; };
 		0488DC22277959E400345F10 /* ProcessrunEnvFlutterPlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessrunEnvFlutterPlugin.swift; sourceTree = "<group>"; };
+		0488DC432779BF3C00345F10 /* CommonRunner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonRunner.swift; sourceTree = "<group>"; };
+		0488DC452779C2A600345F10 /* WhichScript.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = WhichScript.sh; sourceTree = "<group>"; };
+		0488DC472779C74300345F10 /* EnvScript.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = EnvScript.sh; sourceTree = "<group>"; };
 		04EF53CF2768B8ED004B3E05 /* FlutterNativePlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlutterNativePlugin.swift; sourceTree = "<group>"; };
 		333000ED22D3DE5D00554162 /* Warnings.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Warnings.xcconfig; sourceTree = "<group>"; };
 		335BBD1A22A9A15E00E9071D /* GeneratedPluginRegistrant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneratedPluginRegistrant.swift; sourceTree = "<group>"; };
@@ -112,6 +118,7 @@
 			isa = PBXGroup;
 			children = (
 				048010862774B106004023E9 /* FileIO.swift */,
+				0488DC432779BF3C00345F10 /* CommonRunner.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -181,6 +188,8 @@
 				04EF53CF2768B8ED004B3E05 /* FlutterNativePlugin.swift */,
 				04801082277489D2004023E9 /* UnifiedRgistration.swift */,
 				0480108A27756514004023E9 /* Script.sh */,
+				0488DC452779C2A600345F10 /* WhichScript.sh */,
+				0488DC472779C74300345F10 /* EnvScript.sh */,
 			);
 			path = Runner;
 			sourceTree = "<group>";
@@ -266,8 +275,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				0480108B27756514004023E9 /* Script.sh in Resources */,
+				0488DC482779C74300345F10 /* EnvScript.sh in Resources */,
 				33CC10F32044A3C60003C045 /* Assets.xcassets in Resources */,
 				33CC10F62044A3C60003C045 /* MainMenu.xib in Resources */,
+				0488DC462779C2A600345F10 /* WhichScript.sh in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -340,6 +351,7 @@
 				04801083277489D2004023E9 /* UnifiedRgistration.swift in Sources */,
 				0480107F2774767B004023E9 /* WhichFlutterShell.swift in Sources */,
 				04801081277476CA004023E9 /* ProcessrunFlutterShell.swift in Sources */,
+				0488DC442779BF3C00345F10 /* CommonRunner.swift in Sources */,
 				33CC10F12044A3C60003C045 /* AppDelegate.swift in Sources */,
 				335BBD1B22A9A15E00E9071D /* GeneratedPluginRegistrant.swift in Sources */,
 				048010872774B106004023E9 /* FileIO.swift in Sources */,

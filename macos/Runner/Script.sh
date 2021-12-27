@@ -7,7 +7,7 @@
 #  
 
 # 这里cd到用户目录，然后打印这个目录下的文件
-#cd /Users/mac
+home="$PROJECT_DIR"
 
 #flutter_which=$(which flutter)
 #echo "sssss: $flutter_which"
@@ -30,7 +30,7 @@ current=`pwd`
 #user=`who am i`
 #echo $current
 
-process_run1="$current/.config/tekartik/process_run"
+#process_run1="$current/.config/tekartik/process_run"
 #process_run2="$current/.config/tekartik/process_run"
 # sudo -S visudo
 flutter_which=`which flutter`

@@ -146,12 +146,12 @@ class _ListViewState extends State<ShellListView> {
     print('initState');
     // TODO: implement initState
     super.initState();
-    // ProcessrunEnv.processrunEnvPath.then((value) => {
-    //       print('33333333:$value'),
-    //       WhichFlutterPlugin.whichls.then((value) => {print('1111111:$value')}),
-    //       // WhichFlutterPlugin.whichflutter
-    //       //     .then((value) => {print('222222:$value')}),
-    //     });
+    ProcessrunEnv.processrunEnvPath.then((value) => {
+          print('33333333:$value'),
+          // WhichFlutterPlugin.whichls.then((value) => {print('1111111:$value')}),
+          WhichFlutterPlugin.whichflutter
+              .then((value) => {print('222222:$value')}),
+        });
   }
 
   void _incrementShellTask() async {
