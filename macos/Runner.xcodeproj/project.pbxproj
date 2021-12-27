@@ -27,6 +27,7 @@
 		048010872774B106004023E9 /* FileIO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048010862774B106004023E9 /* FileIO.swift */; };
 		04801089277557BF004023E9 /* AppsandoxFlutterPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04801088277557BF004023E9 /* AppsandoxFlutterPlugin.swift */; };
 		0480108B27756514004023E9 /* Script.sh in Resources */ = {isa = PBXBuildFile; fileRef = 0480108A27756514004023E9 /* Script.sh */; };
+		0488DC23277959E400345F10 /* ProcessrunEnvFlutterPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0488DC22277959E400345F10 /* ProcessrunEnvFlutterPlugin.swift */; };
 		04EF53D02768B8ED004B3E05 /* FlutterNativePlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EF53CF2768B8ED004B3E05 /* FlutterNativePlugin.swift */; };
 		335BBD1B22A9A15E00E9071D /* GeneratedPluginRegistrant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 335BBD1A22A9A15E00E9071D /* GeneratedPluginRegistrant.swift */; };
 		33CC10F12044A3C60003C045 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33CC10F02044A3C60003C045 /* AppDelegate.swift */; };
@@ -65,6 +66,7 @@
 		048010862774B106004023E9 /* FileIO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileIO.swift; sourceTree = "<group>"; };
 		04801088277557BF004023E9 /* AppsandoxFlutterPlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppsandoxFlutterPlugin.swift; sourceTree = "<group>"; };
 		0480108A27756514004023E9 /* Script.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = Script.sh; sourceTree = "<group>"; };
+		0488DC22277959E400345F10 /* ProcessrunEnvFlutterPlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessrunEnvFlutterPlugin.swift; sourceTree = "<group>"; };
 		04EF53CF2768B8ED004B3E05 /* FlutterNativePlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlutterNativePlugin.swift; sourceTree = "<group>"; };
 		333000ED22D3DE5D00554162 /* Warnings.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Warnings.xcconfig; sourceTree = "<group>"; };
 		335BBD1A22A9A15E00E9071D /* GeneratedPluginRegistrant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneratedPluginRegistrant.swift; sourceTree = "<group>"; };
@@ -101,6 +103,7 @@
 				0480107E2774767B004023E9 /* WhichFlutterShell.swift */,
 				04801080277476CA004023E9 /* ProcessrunFlutterShell.swift */,
 				04801088277557BF004023E9 /* AppsandoxFlutterPlugin.swift */,
+				0488DC22277959E400345F10 /* ProcessrunEnvFlutterPlugin.swift */,
 			);
 			path = Plugins;
 			sourceTree = "<group>";
@@ -201,6 +204,7 @@
 				33CC10EB2044A3C60003C045 /* Resources */,
 				33CC110E2044A8840003C045 /* Bundle Framework */,
 				3399D490228B24CF009A79C7 /* ShellScript */,
+				0488DC2427795F8200345F10 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -270,6 +274,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		0488DC2427795F8200345F10 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\"$PROJECT_DIR\"/Runner/Script.sh embed\n\n#/Users/mac/Desktop/pfmacostsApp/pfGorgeousFlutterShell/macos/Runner/Script.sh\n";
+		};
 		3399D490228B24CF009A79C7 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -322,6 +343,7 @@
 				33CC10F12044A3C60003C045 /* AppDelegate.swift in Sources */,
 				335BBD1B22A9A15E00E9071D /* GeneratedPluginRegistrant.swift in Sources */,
 				048010872774B106004023E9 /* FileIO.swift in Sources */,
+				0488DC23277959E400345F10 /* ProcessrunEnvFlutterPlugin.swift in Sources */,
 				04801089277557BF004023E9 /* AppsandoxFlutterPlugin.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

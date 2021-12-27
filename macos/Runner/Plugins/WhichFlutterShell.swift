@@ -66,7 +66,7 @@ public class WhichFlutterShell: NSObject,FlutterMacOS.FlutterPlugin {
             buildTask.terminationHandler = { task in
                 DispatchQueue.main.async(execute: {
                     print("任务结束");
-                    grepWhichResult = task.standardOutput!;
+//                    grepWhichResult = task.standardOutput!;
                 });
             }
             // 开始执行任务

@@ -6,6 +6,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:pf/Appsandox.dart';
+import 'package:pf/ProcessrunEnv.dart';
 import 'GrepCommand.dart';
 import 'ProcessResultEntity.dart';
 import 'ShellScript.dart';
@@ -145,12 +146,12 @@ class _ListViewState extends State<ShellListView> {
     print('initState');
     // TODO: implement initState
     super.initState();
-    // var macosSystemInfo = WhichFlutterPlugin();
-    WhichFlutterPlugin.whichls.then((value) => {
-          // var ls = ,
-          print('1111111:$value')
-        });
-    WhichFlutterPlugin.whichflutter.then((value) => {print('222222:$value')});
+    // ProcessrunEnv.processrunEnvPath.then((value) => {
+    //       print('33333333:$value'),
+    //       WhichFlutterPlugin.whichls.then((value) => {print('1111111:$value')}),
+    //       // WhichFlutterPlugin.whichflutter
+    //       //     .then((value) => {print('222222:$value')}),
+    //     });
   }
 
   void _incrementShellTask() async {
