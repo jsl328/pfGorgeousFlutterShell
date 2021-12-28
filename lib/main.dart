@@ -6,24 +6,24 @@ import 'dart:core';
 import 'package:flutter/foundation.dart';
 
 void main() async {
-  FlutterError.onError = (FlutterErrorDetails details) {
-    FlutterError.presentError(details);
-    if (kReleaseMode) exit(1);
-  };
-  runApp(const MyApp());
-  // runZonedGuarded(() async {
-  //   WidgetsFlutterBinding.ensureInitialized();
-  //   await myErrorsHandler.initialize();
-  //   FlutterError.onError = (FlutterErrorDetails details) {
-  //     FlutterError.presentError(details);
-  //     myErrorsHandler.onError(details);
-  //     exit(1);
-  //   };
-  //   runApp(MyApp());
-  // }, (Object error, StackTrace stack) {
-  //   myErrorsHandler.onError(error, stack);
-  //   exit(1);
-  // });
+  /*添加异常捕获*/
+  runZonedGuarded(
+    () async {
+      WidgetsFlutterBinding.ensureInitialized();
+      // await myErrorsHandler.initialize();
+      FlutterError.onError = (FlutterErrorDetails details) {
+        FlutterError.presentError(details);
+        // myErrorsHandler.onError(details);
+        exit(1);
+      };
+      runApp(const MyApp());
+    },
+    (Object error, StackTrace stack) {
+      // myErrorsHandler.onError(error, stack);
+      exit(1);
+    },
+    zoneValues: {'ZoneName': 'Second zone'},
+  );
 }
 
 class MyApp extends StatelessWidget {

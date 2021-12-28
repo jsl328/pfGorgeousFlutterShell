@@ -3,6 +3,8 @@
 // author : jiangsl
 // date: 22/12 2021
 
+import 'dart:io';
+
 import 'package:pf/GlobalEnvPath.dart';
 
 import 'GrepEntity.dart';
@@ -22,21 +24,23 @@ class GrepCommand {
       grepEntityInstance.grepName = commandPath;
       grepEntityInstance.grepRes = "commandScript 为空";
     }
-    var newWhich = which(commandPath,
-        environment: {"PATH": GlobalEnvPath.flutterbin},
-        includeParentEnvironment: true); //异步方法
     grepEntityInstance.grepName = commandPath;
-    if (newWhich == null) {
+    Future<String?> newWhich = Future(() => null);
+    //异步方法
+    newWhich = which(commandPath,
+        environment: {"PATH": GlobalEnvPath.flutterbin()},
+        includeParentEnvironment: true);
+    newWhich
+        .then((value) => {
+              // print("object----$value"),
+              grepEntityInstance.status = 200,
+              grepEntityInstance.grepRes = value.toString()
+            })
+        .catchError((_) {
       //print("本机whic路径未找到");
       grepEntityInstance.status = 401;
       grepEntityInstance.grepRes = "本机whic路径未找到";
-    } else {
-      newWhich.then((value) => {
-            // print("object----$value"),
-            grepEntityInstance.status = 200,
-            grepEntityInstance.grepRes = value.toString()
-          });
-    }
+    });
     return grepEntityInstance;
   }
 
@@ -45,7 +49,7 @@ class GrepCommand {
       return 'commandPath 为空';
     } else {
       return whichSync(commandPath,
-          environment: {"PATH": GlobalEnvPath.flutterbin},
+          environment: {"PATH": GlobalEnvPath.flutterbin()},
           includeParentEnvironment: true); //同步返回
     }
   }

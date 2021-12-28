@@ -146,14 +146,37 @@ class _ListViewState extends State<ShellListView> {
 
   @override
   void initState() {
-    //print('initState');
+    print('initState');
     super.initState();
-    /*flutter的工作目录，同步获取作为应用的标题*/
-    String flutterExecutable =
-        GrepCommand.grepSyncRunShellCommandPath("flutter")!;
-    setState(() {
-      appsandox = flutterExecutable;
-    });
+    /*flutter的工作目录，同步获取作为应用的标题,同步异常捕获使用*/
+    try {
+      String flutterExecutable =
+          GrepCommand.grepSyncRunShellCommandPath("flutter")!;
+      setState(() {
+        appsandox = flutterExecutable;
+      });
+      //print('Allocate something 3');
+      //throw 'Other error occurred';
+    } on UnsupportedError {
+      print('Cant divide to zero');
+    } on FormatException catch (e) {
+      print('Format exceptions: $e');
+    } catch (e, s) {
+      print('Unknown exceptions: $e, with stack: \n$s');
+      rethrow;
+    } finally {
+      print('Clean-up something 3');
+    }
+    // try {
+    //   Future.delayed(Duration(seconds: 1), () {
+    //     final _ = 100 ~/ 0;
+    //   });
+    //   print('Everything is fine!');
+    // } on UnsupportedError {
+    //   print('Cant divide to zero');
+    // } finally {
+    //   print('Clean-up done');
+    // }
   }
 
   void _incrementShellTask() async {
