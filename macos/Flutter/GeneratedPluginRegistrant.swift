@@ -7,5 +7,4 @@ import Foundation
 
 
 func RegisterGeneratedPlugins(registry: FlutterPluginRegistry) {
-    UnifiedRgistration.unifiedRegistration(registry: registry);
 }

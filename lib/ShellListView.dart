@@ -5,13 +5,14 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:pf/Appsandox.dart';
-import 'package:pf/ProcessrunEnv.dart';
-import 'package:pf/ProcessrunFlutterPlugin.dart';
+// import 'package:pf/Appsandox.dart';
+// import 'package:pf/ProcessrunEnv.dart';
+// import 'package:pf/ProcessrunFlutterPlugin.dart';
 import 'GrepCommand.dart';
 import 'ProcessResultEntity.dart';
 import 'ShellScript.dart';
-import 'whichFlutterPlugin.dart';
+// import 'whichFlutterPlugin.dart';
+// import 'package:process_run/which.dart';
 
 class ShellListView extends StatefulWidget {
   @override
@@ -23,7 +24,6 @@ class ShellListView extends StatefulWidget {
 class _ListViewState extends State<ShellListView> {
   List<ProcessResultEntity> _items = [];
   String appsandox = "";
-  String whichFlutterENV = "";
   /*
     使用ProcessResult构建ProcessResultEntity实体
   */
@@ -42,12 +42,11 @@ class _ListViewState extends State<ShellListView> {
   */
   void _listViewResponse() async {
     /* dart  --version 实现*/
-    // var commandPath = "dart";
-    var commandPath = whichFlutterENV;
-    //var dartRun = await GrepCommand.grepRunShellCommandPath(commandPath);
+    var commandPath = "dart";
+    var dartRun = await GrepCommand.grepRunShellCommandPath(commandPath);
     Future<List<ProcessResult>> _shellRes =
         ShellScriptStatic.dartVersionShellCommand(
-            '$whichFlutterENV  --version')!;
+            '${dartRun!.grepRes}  --version')!;
     _shellRes.then((out) {
       Iterable<ProcessResultEntity> pentity = out.map((ProcessResult item) {
         return generateProcessResultEntity(item);
@@ -56,10 +55,9 @@ class _ListViewState extends State<ShellListView> {
         _items.addAll(pentity);
       });
     });
-    return;
+
     /* flutter  --build 实现*/
-    // var fluttercommandPath = "flutter";
-    var fluttercommandPath = whichFlutterENV;
+    var fluttercommandPath = "flutter";
     var flutterRun =
         await GrepCommand.grepRunShellCommandPath(fluttercommandPath);
     Future<List<ProcessResult>> _flutterShellRes =
@@ -115,8 +113,7 @@ class _ListViewState extends State<ShellListView> {
       });
     });
     /* flutter pub --version  实现*/
-    // var flutterPubCommandPath = "flutter";
-    var flutterPubCommandPath = whichFlutterENV;
+    var flutterPubCommandPath = "flutter";
     var flutterPubRun =
         await GrepCommand.grepRunShellCommandPath(flutterPubCommandPath);
     if (flutterPubRun!.grepRes.isNotEmpty) {
@@ -137,41 +134,32 @@ class _ListViewState extends State<ShellListView> {
     }
   }
 
+  /*原生桥接插件，用户获取应用的工作目录*/
   void getAppsandox() async {
-    Appsandox.appsandoxAddress.then((value) {
-      print('object------$value');
-      setState(() {
-        appsandox = value;
-      });
-    });
-    // setState(() {});
+    // Appsandox.appsandoxAddress.then((value) {
+    //   print('object------$value');
+    //   setState(() {
+    //     appsandox = value;
+    //   });
+    // });
   }
 
   @override
   void initState() {
-    print('initState');
-    // TODO: implement initState
+    //print('initState');
     super.initState();
-    WhichFlutterPlugin.whichflutter.then((value) => {
-          print("sssssss:$value"),
-          setState(() {
-            whichFlutterENV = value;
-          }),
-          // ProcessrunFlutterPlugin.flutterBinBuild(value)
-          // .then((value) => {print('222222:$value')})
-        });
-    // ProcessrunEnv.processrunEnvPath.then((value) => {
-    //       print('33333333:$value'),
-    //       // WhichFlutterPlugin.whichls.then((value) => {print('1111111:$value')}),
-
-    //     });
+    /*flutter的工作目录，同步获取作为应用的标题*/
+    String flutterExecutable =
+        GrepCommand.grepSyncRunShellCommandPath("flutter")!;
+    setState(() {
+      appsandox = flutterExecutable;
+    });
   }
 
   void _incrementShellTask() async {
     _items = []; //清空listview数据集
     _listViewResponse();
     getAppsandox();
-    // whichFlutterENV = "";
   }
 
   //buildListTile相当于ListView的Adapter

@@ -1,3 +1,7 @@
+// classs: ProcessrunFlutterPlugin
+// description: unuse process.run()原生插件
+// author : jiangsl
+// date: 28/12 2021
 import 'dart:async';
 
 import 'package:flutter/services.dart';

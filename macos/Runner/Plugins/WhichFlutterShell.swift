@@ -109,7 +109,7 @@ public class WhichFlutterShell: NSObject,FlutterMacOS.FlutterPlugin {
         print(output);
 //        return (Int(task.terminationStatus), output)
 //        let taskQueue = DispatchQueue.global(qos: DispatchQoS.QoSClass.background);
-        var grepWhichResult: String = ""
+        let grepWhichResult: String = ""
 //        taskQueue.async {
 //            let buildTask = Process()
 ////            buildTask.launchPath = "/usr/bin/which"
@@ -133,7 +133,7 @@ public class WhichFlutterShell: NSObject,FlutterMacOS.FlutterPlugin {
     
     func lsShell(commandPath :String , commandScript:String) ->String{
         let taskQueue = DispatchQueue.global(qos: DispatchQoS.QoSClass.background);
-        var res: String = ""
+        let res: String = ""
         taskQueue.async {
             
             // 获取脚本地址

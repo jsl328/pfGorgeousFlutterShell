@@ -1,3 +1,7 @@
+// classs: ProcessrunEnv
+// description: unuse 原生插件获取env环境变量
+// author : jiangsl
+// date: 28/12 2021
 import 'dart:async';
 
 import 'package:flutter/services.dart';

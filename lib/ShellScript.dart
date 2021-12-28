@@ -24,7 +24,10 @@ class ShellScriptStatic {
       return null;
     } else {
       var dartVersionShell = Shell();
-      result = dartVersionShell.run(startPath);
+      result = dartVersionShell.run(
+        startPath,
+        onProcess: (process) => print(process.toString()),
+      );
     }
     return result;
   }

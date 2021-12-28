@@ -1,5 +1,8 @@
+// classs: Appsandox
+// description:  项目沙盒目录
+// author : jiangsl
+// date: 28/12 2021
 import 'dart:async';
-
 import 'package:flutter/services.dart';
 
 class Appsandox {

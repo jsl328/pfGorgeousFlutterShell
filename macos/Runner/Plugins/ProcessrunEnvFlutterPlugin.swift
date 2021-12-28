@@ -46,7 +46,7 @@ public class ProcessrunEnvFlutterPlugin: NSObject,FlutterMacOS.FlutterPlugin {
     
     public func initEnvYaml() ->String{
         let taskQueue = DispatchQueue.global(qos: DispatchQoS.QoSClass.background);
-        var result: String = ""
+        let result: String = ""
         taskQueue.async {
             // 获取脚本地址
             guard let path = Bundle.main.path(forResource: "Script", ofType: "sh") else {

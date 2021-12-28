@@ -1,3 +1,11 @@
+/*
+
+  classs: WhichFlutterPlugin
+  description: 原生WhichFlutterPlugin的插件方法
+  author : jiangsl
+  date: 22/12 2021
+
+*/
 import 'dart:async';
 
 import 'package:flutter/services.dart';

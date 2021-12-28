@@ -3,6 +3,8 @@
 // author : jiangsl
 // date: 22/12 2021
 
+import 'package:pf/GlobalEnvPath.dart';
+
 import 'GrepEntity.dart';
 import 'package:process_run/shell.dart';
 
@@ -20,7 +22,9 @@ class GrepCommand {
       grepEntityInstance.grepName = commandPath;
       grepEntityInstance.grepRes = "commandScript 为空";
     }
-    var newWhich = which(commandPath); //异步方法
+    var newWhich = which(commandPath,
+        environment: {"PATH": GlobalEnvPath.flutterbin},
+        includeParentEnvironment: true); //异步方法
     grepEntityInstance.grepName = commandPath;
     if (newWhich == null) {
       //print("本机whic路径未找到");
@@ -40,7 +44,9 @@ class GrepCommand {
     if (commandPath.isEmpty) {
       return 'commandPath 为空';
     } else {
-      return whichSync(commandPath); //同步返回
+      return whichSync(commandPath,
+          environment: {"PATH": GlobalEnvPath.flutterbin},
+          includeParentEnvironment: true); //同步返回
     }
   }
 }

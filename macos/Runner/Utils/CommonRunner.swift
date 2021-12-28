@@ -43,7 +43,7 @@ class  CommandRunner: NSObject {
         let pipe = Pipe()
         
         var environment = ProcessInfo.processInfo.environment
-        environment["PATH"] = "/opt/anaconda3/bin:/opt/anaconda3/condabin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/Apple/usr/bin:/Library/Java/JavaVirtualMachines/jdk1.8.0_271.jdk/Contents/Home/bin:.:/Users/mac/Desktop/flutter/bin:/Users/mac/.gradle/wrapper/dists/gradle-5.1.1-all/bin:/usr/local/apache-tomcat-8.5.27/bin:/Library/Java/JavaVirtualMachines/jdk1.8.0_271.jdk/Contents/Home/bin:/Users/mac/Library/Android/sdk/tools:/Users/mac/Library/Android/sdk/platform-tools:/Users/mac/Library/Android/sdk/ndk/21.0.6113669:/Users/mac/Library/Android/sdk/ndk/21.0.6113669/ndk-build:/Users/mac/Desktop/apache-maven-3.5.3/bin"
+        environment["PATH"] = "/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/mac/Desktop/flutter/bin"
         
 //        environment["PATH"] = WhichFlutterShell().envCommand(commandPath: "echo $PATH");
         task.environment = environment
@@ -82,8 +82,8 @@ class  CommandRunner: NSObject {
     static func async(command: String,
                       output: ((String) -> Void)? = nil,
                       terminate: ((Int) -> Void)? = nil) {
-        let utf8Command = "export LANG=en_US.UTF-8\n" + command
-        async(shellPath: "/bin/bash", arguments: ["-c", utf8Command], output:output, terminate:terminate)
+//        let utf8Command = "export LANG=en_US.UTF-8\n" + command
+//        async(shellPath: "/bin/bash", arguments: ["-c", utf8Command], output:output, terminate:terminate)
     }
     
     /** 异步执行
@@ -102,56 +102,56 @@ class  CommandRunner: NSObject {
                                 self?.appendLog(str: "end \(code)")
                             })
      */
-    static func async(shellPath: String,
-                      arguments: [String]? = nil,
-                      output: ((String) -> Void)? = nil,
-                      terminate: ((Int) -> Void)? = nil) {
-        DispatchQueue.global().async {
-            let task = Process()
-            let pipe = Pipe()
-            let outHandle = pipe.fileHandleForReading
-            
-            var environment = ProcessInfo.processInfo.environment
-            environment["PATH"] = "/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
-            task.environment = environment
-            
-            if arguments != nil {
-                task.arguments = arguments!
-            }
-            
-            task.launchPath = shellPath
-            task.standardOutput = pipe
-            
-            outHandle.waitForDataInBackgroundAndNotify()
-            var obs1 : NSObjectProtocol!
-            obs1 = NotificationCenter.default.addObserver(forName: NSNotification.Name.NSFileHandleDataAvailable,
-                                                          object: outHandle, queue: nil) {  notification -> Void in
-                                                            let data = outHandle.availableData
-                                                            if data.count > 0 {
-                                                                if let str = NSString(data: data, encoding: String.Encoding.utf8.rawValue) {
-                                                                    DispatchQueue.main.async {
-                                                                        output?(str as String)
-                                                                    }
-                                                                }
-                                                                outHandle.waitForDataInBackgroundAndNotify()
-                                                            } else {
-                                                                NotificationCenter.default.removeObserver(obs1)
-                                                                pipe.fileHandleForReading.closeFile()
-                                                            }
-            }
-            
-            var obs2 : NSObjectProtocol!
-            obs2 = NotificationCenter.default.addObserver(forName: Process.didTerminateNotification,
-                                                          object: task, queue: nil) { notification -> Void in
-                                                            DispatchQueue.main.async {
-                                                                terminate?(Int(task.terminationStatus))
-                                                            }
-                                                            NotificationCenter.default.removeObserver(obs2)
-            }
-            
-            task.launch()
-            task.waitUntilExit()
-        }
-    }
+//    static func async(shellPath: String,
+//                      arguments: [String]? = nil,
+//                      output: ((String) -> Void)? = nil,
+//                      terminate: ((Int) -> Void)? = nil) {
+//        DispatchQueue.global().async {
+//            let task = Process()
+//            let pipe = Pipe()
+//            let outHandle = pipe.fileHandleForReading
+//
+//            var environment = ProcessInfo.processInfo.environment
+//            environment["PATH"] = "/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+//            task.environment = environment
+//
+//            if arguments != nil {
+//                task.arguments = arguments!
+//            }
+//
+//            task.launchPath = shellPath
+//            task.standardOutput = pipe
+//
+//            outHandle.waitForDataInBackgroundAndNotify()
+//            var obs1 : NSObjectProtocol!
+//            obs1 = NotificationCenter.default.addObserver(forName: NSNotification.Name.NSFileHandleDataAvailable,
+//                                                          object: outHandle, queue: nil) {  notification -> Void in
+//                                                            let data = outHandle.availableData
+//                                                            if data.count > 0 {
+//                                                                if let str = NSString(data: data, encoding: String.Encoding.utf8.rawValue) {
+//                                                                    DispatchQueue.main.async {
+//                                                                        output?(str as String)
+//                                                                    }
+//                                                                }
+//                                                                outHandle.waitForDataInBackgroundAndNotify()
+//                                                            } else {
+//                                                                NotificationCenter.default.removeObserver(obs1)
+//                                                                pipe.fileHandleForReading.closeFile()
+//                                                            }
+//            }
+//
+//            var obs2 : NSObjectProtocol!
+//            obs2 = NotificationCenter.default.addObserver(forName: Process.didTerminateNotification,
+//                                                          object: task, queue: nil) { notification -> Void in
+//                                                            DispatchQueue.main.async {
+//                                                                terminate?(Int(task.terminationStatus))
+//                                                            }
+//                                                            NotificationCenter.default.removeObserver(obs2)
+//            }
+//
+//            task.launch()
+//            task.waitUntilExit()
+//        }
+//    }
 }
 
